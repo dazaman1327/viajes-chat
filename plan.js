@@ -66,7 +66,7 @@ async function generatePlan() {
         console.error("Error en la API:", error);
     } finally {
         // Ocultar la imagen de carga y mostrar el plan
-        loading.classList.add("hidden");
+        loading.style.display = "none"; // Oculta el GIF de carga
         planContainer.classList.remove("hidden");
     }
 }
