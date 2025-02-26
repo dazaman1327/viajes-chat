@@ -3,114 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personaliza tu Viaje</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-        }
-        .container {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            max-width: 500px;
-            width: 100%;
-        }
-        .title {
-            text-align: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-        }
-        .form-group {
-            margin-bottom: 1rem;
-            display: flex;
-            flex-direction: column;
-        }
-        .form-group label {
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-        select, input[type="range"] {
-            padding: 0.5rem;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            font-size: 1rem;
-        }
-        .checkbox-group {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-        .checkbox-group label {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        .btn {
-            width: 100%;
-            padding: 1rem;
-            background-color: #e57373;
-            color: white;
-            font-size: 1.2rem;
-            font-weight: bold;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-        .btn:hover {
-            background-color: #d32f2f;
-        }
-        @media (max-width: 600px) {
-            .container {
-                max-width: 90%;
-            }
-        }
-    </style>
+    <title>Beyond The Map - Viajes Personalizados</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <div class="title">📌 Personaliza tu Viaje</div>
-        
-        <div class="form-group">
-            <label>📍 Destino</label>
-            <select>
-                <option>Europa</option>
-                <option>América</option>
-                <option>Asia</option>
-            </select>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="hero-content">
+            <h1>Tu Compañero de Viajes Personalizado</h1>
+            <p>Obtén recomendaciones de viaje y planea tu aventura perfecta con nuestra inteligencia artificial.</p>
         </div>
-        
-        <div class="form-group">
-            <label>💰 Presupuesto</label>
-            <input type="range" min="10000" max="100000" value="60000">
-        </div>
-        
-        <div class="form-group">
-            <label>🎭 Tipo de Viaje</label>
-            <select>
-                <option>Primer Euro Viaje</option>
-                <option>Destinos poco comunes</option>
-            </select>
-        </div>
-        
-        <div class="form-group">
-            <label>🔔 Invertir en</label>
-            <div class="checkbox-group">
-                <label><input type="checkbox"> Hoteles</label>
-                <label><input type="checkbox"> Comida</label>
-                <label><input type="checkbox"> Actividades</label>
+    </section>
+
+    <!-- Sección Inspiracional -->
+    <section id="inspiration">
+        <h2>✨ Inspírate</h2>
+        <div class="grid">
+            <div class="card">
+                <img src="img/santorini.jpg" alt="Santorini, Grecia">
+                <h3>Santorini, Grecia</h3>
+                <p>Casas blancas y puestas de sol impresionantes.</p>
+            </div>
+            <div class="card">
+                <img src="img/swiss-alps.jpg" alt="Alpes Suizos">
+                <h3>Alpes Suizos</h3>
+                <p>Montañas majestuosas y senderos escénicos.</p>
+            </div>
+            <div class="card">
+                <img src="img/bali.jpg" alt="Bali, Indonesia">
+                <h3>Bali, Indonesia</h3>
+                <p>Paraíso tropical con cultura vibrante.</p>
             </div>
         </div>
-        
-        <button class="btn">🔍 Preguntar a PaoAI</button>
-    </div>
+    </section>
+
+    <!-- Filtros de Viaje -->
+    <section id="filters">
+        <h2>📌 Personaliza tu Viaje</h2>
+        <form id="travel-form">
+            <div class="filter">
+                <label>📍 Destino</label>
+                <select id="region">
+                    <option value="Europa">Europa</option>
+                    <option value="Américas">Américas</option>
+                    <option value="Asia">Asia</option>
+                </select>
+            </div>
+
+            <div class="filter">
+                <label>💰 Presupuesto</label>
+                <input type="range" id="budget" min="10000" max="100000" step="5000" value="50000">
+                <span id="budget-value">50,000 MXN</span>
+            </div>
+
+            <div class="filter">
+                <label>🎭 Tipo de Viaje</label>
+                <select id="trip-type">
+                    <option value="Primer Euro Viaje">Primer Euro Viaje</option>
+                    <option value="Destinos poco comunes">Destinos poco comunes</option>
+                </select>
+            </div>
+
+            <div class="filter">
+                <label>🛎️ Invertir en</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" name="invest" value="Hoteles"> Hoteles
+                    <input type="checkbox" name="invest" value="Comida"> Comida
+                    <input type="checkbox" name="invest" value="Actividades"> Actividades
+                </div>
+            </div>
+
+            <button type="submit">🔎 Preguntar a PaoAI</button>
+        </form>
+    </section>
+
+    <script src="script.js"></script>
 </body>
 </html>
