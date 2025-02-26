@@ -179,3 +179,83 @@ button:hover {
 .cta:hover {
     background-color: #933b4d;
 }
+
+/* 🔹 Mejor separación de secciones con líneas rosadas */
+.section-divider {
+    height: 4px;
+    background-color: #f8c8dc;
+    margin: 10px 0 20px;
+    border-radius: 5px;
+}
+
+/* 🔹 Lista con bullets bien estilizados */
+.styled-list {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+}
+
+.styled-list li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.styled-list li::before {
+    content: "•"; 
+    position: absolute;
+    left: 0;
+    color: #d45d79;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* 🔹 Estilo del contenedor del plan de viaje */
+.plan-container {
+    background-color: #fce4ec;
+    color: #4a4a4a;
+    padding: 25px;
+    border-radius: 10px;
+    max-width: 800px;
+    margin: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.plan-container h1 {
+    font-size: 26px;
+    color: #722f37;
+    text-align: center;
+}
+
+.plan-container h2 {
+    font-size: 20px;
+    color: #b56576;
+    font-weight: bold;
+    margin-top: 25px;
+}
+
+.plan-container p {
+    font-size: 16px;
+    line-height: 1.8;
+    text-align: justify;
+}
+
+/* 🔹 Botón de "Agenda tu cita" */
+.cta {
+    display: block;
+    text-align: center;
+    background-color: #b56576;
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    margin-top: 25px;
+    font-weight: bold;
+}
+
+.cta:hover {
+    background-color: #933b4d;
+}
+
