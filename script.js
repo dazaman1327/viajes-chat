@@ -41,3 +41,19 @@ function appendMessage(text) {
     chatBox.appendChild(messageElement);
     chatBox.scrollTop = chatBox.scrollHeight;
 }
+
+
+document.getElementById("travel-form").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const region = document.getElementById("region").value;
+    const tripType = document.getElementById("trip-type").value;
+    const budget = document.getElementById("budget").value;
+    const invest = Array.from(document.querySelectorAll('input[name="invest"]:checked'))
+                        .map(el => el.value)
+                        .join(", ");
+
+    const params = new URLSearchParams({ region, tripType, budget, invest });
+    window.location.href = "chat.html?" + params.toString();
+});
+
