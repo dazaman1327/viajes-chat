@@ -3,16 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agencia de Viajes - Chat</title>
+    <title>Beyond The Map - Agencia de Viajes</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="chat-container">
-        <h2>Asesor de Viajes Virtual</h2>
-        <div class="chat-box" id="chat-box"></div>
-        <input type="text" id="user-input" placeholder="Escribe tu mensaje..." />
-        <button onclick="sendMessage()">Enviar</button>
-    </div>
+    <header>
+        <h1>Beyond The Map</h1>
+        <p>Viajes personalizados a Europa para viajeros latinos</p>
+    </header>
+
+    <section id="about">
+        <h2>Nuestra Misión</h2>
+        <p>En Beyond The Map, diseñamos experiencias de viaje únicas para explorar el mundo de manera auténtica.</p>
+        
+        <h2>Nuestra Visión</h2>
+        <p>Queremos conectar a los viajeros latinos con destinos inolvidables, adaptados a sus preferencias y presupuesto.</p>
+    </section>
+
+    <section id="blog-carousel">
+        <h2>Últimos artículos</h2>
+        <div class="carousel">
+            <p>📌 Próximamente: Sección de blog aquí</p>
+        </div>
+    </section>
+
+    <section id="custom-travel">
+        <h2>Pre-Arma tu viaje con AI</h2>
+        <form id="travel-form">
+            <label>🌍 Región a visitar:</label>
+            <select id="region">
+                <option value="Europa">Europa</option>
+                <option value="Américas">Américas</option>
+                <option value="Asia">Asia</option>
+            </select>
+
+            <label>✈️ Tipo de viaje:</label>
+            <select id="trip-type">
+                <option value="Primer Euro Viaje">Primer Euro Viaje</option>
+                <option value="Destinos poco comunes">Destinos poco comunes</option>
+            </select>
+
+            <label>💰 Presupuesto: <span id="budget-value">50000</span> MXN</label>
+            <input type="range" id="budget" min="10000" max="100000" step="1000" value="50000">
+
+            <label>🛏️ ¿En qué quieres invertir?</label>
+            <input type="checkbox" name="invest" value="Hoteles"> Hoteles  
+            <input type="checkbox" name="invest" value="Comida"> Comida  
+            <input type="checkbox" name="invest" value="Actividades"> Actividades  
+
+            <button type="submit">Preguntar a PaoAI</button>
+        </form>
+    </section>
+
     <script src="script.js"></script>
 </body>
 </html>
