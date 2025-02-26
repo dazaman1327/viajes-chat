@@ -29,7 +29,14 @@ async function generatePlan() {
                         Usa los siguientes datos para hacer el plan más personalizado:
                         - **Datos del usuario**: ${aboutUser}
                         - **Petición especial**: ${specialRequests}
-                        Devuelve la respuesta en **formato HTML** con la siguiente estructura:
+
+                        📌 **FORMATO DE RESPUESTA (IMPORTANTE)**  
+                        - Usa encabezados (`<h2>`) para separar secciones.  
+                        - Usa listas (`<ul>` y `<li>`) para los destinos y actividades.  
+                        - Usa párrafos (`<p>`) para el itinerario general.  
+                        - Añade una llamada a la acción (`<div class="cta">`) al final.
+
+                        **Estructura esperada en HTML**:
                         <h2>Destinos Sugeridos</h2>
                         <ul>
                             <li>Nombre del destino 1 - Breve descripción</li>
@@ -49,8 +56,7 @@ async function generatePlan() {
                     { 
                         role: "user", 
                         content: `Hola, quiero un plan de viaje con estos detalles: ${travelInfo}. 
-                        ${aboutUser} ${specialRequests}
-                        Devuelve la respuesta en HTML con encabezados, listas y una llamada a la acción al final.` 
+                        ${aboutUser} ${specialRequests}`
                     }
                 ]
             })
@@ -58,22 +64,15 @@ async function generatePlan() {
 
         const data = await response.json();
         
-        // Formatear la respuesta antes de mostrarla
-        const formattedPlan = formatPlan(data.choices[0].message.content);
-        
-        // Mostrar el plan generado con formato estructurado
-        planContainer.innerHTML = formattedPlan;
+        // 📌 Mostrar directamente la respuesta sin modificarla
+        planContainer.innerHTML = data.choices[0].message.content;
         
     } catch (error) {
         planContainer.innerHTML = `<p>❌ Hubo un error al generar tu plan de viaje. Inténtalo de nuevo.</p>`;
         console.error("Error en la API:", error);
     } finally {
-        // Ocultar el loader y mostrar la respuesta
+        // Ocultar el loader y mostrar el plan
         if (loading) loading.style.display = "none";
         if (planContainer) planContainer.classList.remove("hidden");
     }
 }
-
-
-
-
