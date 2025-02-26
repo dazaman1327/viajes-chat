@@ -35,6 +35,8 @@ async function generatePlan() {
                         - Usa listas (`<ul>` y `<li>`) para los destinos y actividades.  
                         - Usa párrafos (`<p>`) para el itinerario general.  
                         - Añade una llamada a la acción (`<div class="cta">`) al final.
+                        - **NO devuelvas texto fuera de etiquetas HTML.**  
+                        - **Asegúrate de que todas las etiquetas estén bien cerradas.**  
 
                         **Estructura esperada en HTML**:
                         <h2>Destinos Sugeridos</h2>
@@ -56,14 +58,17 @@ async function generatePlan() {
                     { 
                         role: "user", 
                         content: `Hola, quiero un plan de viaje con estos detalles: ${travelInfo}. 
-                        ${aboutUser} ${specialRequests}`
+                        ${aboutUser} ${specialRequests}.
+                        **Devuelve la respuesta en HTML con encabezados, listas y una llamada a la acción al final.**`
                     }
                 ]
             })
         });
 
         const data = await response.json();
-        
+
+        console.log("🔍 Respuesta de OpenAI:", data.choices[0].message.content); // Verificar qué responde la API
+
         // 📌 Mostrar directamente la respuesta sin modificarla
         planContainer.innerHTML = data.choices[0].message.content;
         
