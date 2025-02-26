@@ -49,11 +49,13 @@ document.getElementById("travel-form").addEventListener("submit", function(event
     const region = document.getElementById("region").value;
     const tripType = document.getElementById("trip-type").value;
     const budget = document.getElementById("budget").value;
+    const days = document.getElementById("days").value;  // Capturar días de viaje
     const invest = Array.from(document.querySelectorAll('input[name="invest"]:checked'))
                         .map(el => el.value)
                         .join(", ");
 
-    const params = new URLSearchParams({ region, tripType, budget, invest });
+    const params = new URLSearchParams({ region, tripType, budget, days, invest });
     window.location.href = "chat.html?" + params.toString();
 });
+
 
