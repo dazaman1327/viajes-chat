@@ -30,6 +30,7 @@ body {
     justify-content: center;
     gap: 20px;
     margin: 20px 0;
+    flex-wrap: wrap; /* Permite que las tarjetas se acomoden mejor en pantallas pequeñas */
 }
 
 .card {
@@ -54,27 +55,81 @@ body {
 #filters {
     margin: 20px auto;
     max-width: 600px;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.filter {
+#filters h2 {
+    font-size: 1.5rem;
     margin-bottom: 15px;
 }
 
+/* 🔹 Mejor distribución de los filtros */
+#travel-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.filter {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.filter label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* 🔹 Estilización de inputs y selects */
+select, input[type="range"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+/* 🔹 Mejor distribución de los checkboxes */
 .checkbox-group {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     gap: 10px;
 }
 
+/* 🔹 Botón Mejorado */
 button {
-    background-color: #e8a6b3;
+    background-color: #e57373;
     color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
     padding: 12px;
-    border-radius: 5px;
+    border-radius: 8px;
     border: none;
     cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
-    background-color: #d68598;
+    background-color: #d32f2f;
+    transform: scale(1.05);
+}
+
+/* 🔹 Responsividad */
+@media (max-width: 600px) {
+    #filters {
+        max-width: 90%;
+    }
+
+    .grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 90%;
+    }
 }
