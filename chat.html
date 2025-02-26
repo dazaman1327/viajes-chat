@@ -3,28 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat con PaoAI</title>
+    <title>Tu Plan de Viaje - PaoAI</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Chat con PaoAI</h1>
+        <h1>Tu Plan de Viaje Personalizado</h1>
     </header>
 
-    <!-- 🔹 Contenedor de la imagen de carga -->
-    <div id="loading" class="hidden">
-        <img src="img/loading.gif" alt="Cargando...">
+    <!-- Imagen de carga -->
+    <div id="loading">
+        <img src="img/loading.gif" alt="Generando tu plan...">
+        <p>Generando tu itinerario, por favor espera...</p>
     </div>
 
-    <!-- 🔹 Contenedor del chat -->
-    <div class="chat-container">
-        <div id="chat-box"></div>
-        <div class="input-container">
-            <input type="text" id="user-input" placeholder="Escribe tu mensaje...">
-            <button onclick="sendMessage()">Enviar</button>
-        </div>
-    </div>
+    <!-- Contenedor donde se mostrará la respuesta -->
+    <div id="plan-container" class="hidden"></div>
 
-    <script src="chat.js"></script>
+    <script src="plan.js"></script>
 </body>
 </html>
