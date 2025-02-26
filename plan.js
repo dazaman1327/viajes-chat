@@ -77,9 +77,11 @@ async function generatePlan() {
         console.log("🔍 Respuesta de OpenAI:", data.choices[0].message.content);
 
         // 📌 Insertar la respuesta de OpenAI sin modificaciones
-       const parser = new DOMParser();
-       const parsedHTML = parser.parseFromString(data.choices[0].message.content, "text/html").body.innerHTML;
-       planContainer.innerHTML = parsedHTML;
+        planContainer.innerHTML = "";
+        const parser = new DOMParser();
+        const parsedHTML = parser.parseFromString(data.choices[0].message.content, "text/html").body;
+        planContainer.appendChild(parsedHTML);
+
 
         
     } catch (error) {
