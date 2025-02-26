@@ -77,7 +77,10 @@ async function generatePlan() {
         console.log("🔍 Respuesta de OpenAI:", data.choices[0].message.content);
 
         // 📌 Insertar la respuesta de OpenAI sin modificaciones
-        planContainer.innerHTML = data.choices[0].message.content;
+       const parser = new DOMParser();
+       const parsedHTML = parser.parseFromString(data.choices[0].message.content, "text/html").body.innerHTML;
+       planContainer.innerHTML = parsedHTML;
+
         
     } catch (error) {
         planContainer.innerHTML = `<p>❌ Hubo un error al generar tu plan de viaje. Inténtalo de nuevo.</p>`;
