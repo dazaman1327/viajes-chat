@@ -31,35 +31,36 @@ async function generatePlan() {
                         - **Petición especial**: ${specialRequests}
 
                         📌 **FORMATO DE RESPUESTA (IMPORTANTE)**  
-                        - Usa encabezados (`<h2>`) para separar secciones.  
-                        - Usa listas (`<ul>` y `<li>`) para los destinos y actividades.  
-                        - Usa párrafos (`<p>`) para el itinerario general.  
-                        - Añade una llamada a la acción (`<div class="cta">`) al final.
-                        - **NO devuelvas texto fuera de etiquetas HTML.**  
-                        - **Asegúrate de que todas las etiquetas estén bien cerradas.**  
+                        - Devuelve **solo HTML** válido y estructurado.  
+                        - **No uses código fuera de HTML** (no metas JavaScript ni clases extrañas).  
+                        - Usa `<h2>` para títulos, `<ul>` y `<li>` para listas, y `<p>` para texto.  
+                        - Asegúrate de **cerrar todas las etiquetas correctamente**.  
 
-                        **Estructura esperada en HTML**:
-                        <h2>Destinos Sugeridos</h2>
-                        <ul>
-                            <li>Nombre del destino 1 - Breve descripción</li>
-                            <li>Nombre del destino 2 - Breve descripción</li>
-                        </ul>
-                        <h2>Itinerario General</h2>
-                        <p>Resumen de lo que podría incluir el viaje.</p>
-                        <h2>Actividades Recomendadas</h2>
-                        <ul>
-                            <li>Actividad 1</li>
-                            <li>Actividad 2</li>
-                        </ul>
-                        <h2>🎯 Próximos Pasos</h2>
-                        <p>Para personalizar tu viaje y reservar con nosotros, agenda una cita.</p>
-                        <div class="cta">Agenda tu cita con un asesor</div>`
+                        **Ejemplo de estructura esperada**:
+                        <div>
+                            <h2>Destinos Sugeridos</h2>
+                            <ul>
+                                <li>📍 Nombre del destino 1 - Breve descripción.</li>
+                                <li>📍 Nombre del destino 2 - Breve descripción.</li>
+                            </ul>
+                            <h2>📅 Itinerario General</h2>
+                            <p>Resumen del viaje.</p>
+                            <h2>🎯 Actividades Recomendadas</h2>
+                            <ul>
+                                <li>🏞️ Actividad 1.</li>
+                                <li>🍽️ Actividad 2.</li>
+                            </ul>
+                            <h2>🚀 Próximos Pasos</h2>
+                            <p>Para personalizar tu viaje, agenda una cita con nosotros.</p>
+                            <div class="cta">Agenda tu cita con un asesor</div>
+                        </div>
+                        
+                        No devuelvas nada fuera de este formato HTML.`
                     },
                     { 
                         role: "user", 
                         content: `Hola, quiero un plan de viaje con estos detalles: ${travelInfo}. 
-                        ${aboutUser} ${specialRequests}.
-                        **Devuelve la respuesta en HTML con encabezados, listas y una llamada a la acción al final.**`
+                        ${aboutUser} ${specialRequests}. **Devuelve la respuesta solo en HTML, siguiendo el formato indicado.**`
                     }
                 ]
             })
@@ -67,9 +68,9 @@ async function generatePlan() {
 
         const data = await response.json();
 
-        console.log("🔍 Respuesta de OpenAI:", data.choices[0].message.content); // Verificar qué responde la API
+        console.log("🔍 Respuesta de OpenAI:", data.choices[0].message.content); // Verificar la respuesta en consola
 
-        // 📌 Mostrar directamente la respuesta sin modificarla
+        // 📌 Mostrar directamente la respuesta SIN modificaciones
         planContainer.innerHTML = data.choices[0].message.content;
         
     } catch (error) {
