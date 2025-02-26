@@ -8,22 +8,31 @@ async function sendMessage() {
     appendMessage("Tú: " + message);
     userInput.value = "";
 
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": "Bearer TU_API_KEY_AQUI"
-        },
-        body: JSON.stringify({
-            model: "gpt-4",
-            messages: [{ role: "system", content: "Eres un asesor de viajes experto en destinos de Europa para viajeros latinos." }, 
-                       { role: "user", content: message }]
-        })
-    });
+    try {
+        const response = await fetch("https://plain-resonance-24f2.ingdavidzavala.workers.dev/", { 
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                model: "gpt-4",
+                messages: [
+                    { role: "system", content: "Eres un asesor de viajes experto en Europa para viajeros latinos. Proporciona recomendaciones de destinos, itinerarios y consejos de viaje." }, 
+                    { role: "user", content: message }
+                ]
+            })
+        });
 
-    const data = await response.json();
-    const reply = data.choices[0].message.content;
-    appendMessage("Asesor: " + reply);
+        const data = await response.json();
+
+        if (data.choices && data.choices.length > 0) {
+            const reply = data.choices[0].message.content;
+            appendMessage("Asesor: " + reply);
+        } else {
+            appendMessage("Asesor: Lo siento, no pude procesar tu solicitud.");
+        }
+    } catch (error) {
+        console.error("Error en la solicitud:", error);
+        appendMessage("Asesor: Ocurrió un error al procesar tu solicitud. Intenta de nuevo.");
+    }
 }
 
 function appendMessage(text) {
