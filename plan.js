@@ -3,6 +3,9 @@ const params = new URLSearchParams(window.location.search);
 const travelInfo = `Región: ${params.get("region")}, Tipo de Viaje: ${params.get("tripType")}, 
 Presupuesto: ${params.get("budget")} MXN, Días: ${params.get("days")}, Invertir en: ${params.get("invest")}`;
 
+const aboutUser = params.get("aboutYou") ? `Información sobre el viajero: ${params.get("aboutYou")}` : "";
+const specialRequests = params.get("specialRequests") ? `Petición especial del usuario: ${params.get("specialRequests")}` : "";
+
 // Esperar a que la página cargue completamente antes de solicitar el plan
 document.addEventListener("DOMContentLoaded", function () {
     generatePlan();
@@ -23,6 +26,9 @@ async function generatePlan() {
                         role: "system", 
                         content: `Eres un asesor de viajes especializado en crear planes personalizados para viajeros latinos. 
                         Tu objetivo es inspirar al usuario con una propuesta de viaje emocionante y atractiva. 
+                        Usa los siguientes datos para hacer el plan más personalizado:
+                        - **Datos del usuario**: ${aboutUser}
+                        - **Petición especial**: ${specialRequests}
                         Devuelve la respuesta en **formato HTML** con la siguiente estructura:
                         <h2>Destinos Sugeridos</h2>
                         <ul>
@@ -43,6 +49,7 @@ async function generatePlan() {
                     { 
                         role: "user", 
                         content: `Hola, quiero un plan de viaje con estos detalles: ${travelInfo}. 
+                        ${aboutUser} ${specialRequests}
                         Devuelve la respuesta en HTML con encabezados, listas y una llamada a la acción al final.` 
                     }
                 ]
@@ -50,14 +57,10 @@ async function generatePlan() {
         });
 
         const data = await response.json();
-
-        // Verificar si la respuesta es válida
-        if (data.choices && data.choices.length > 0 && data.choices[0].message.content) {
-            planContainer.innerHTML = data.choices[0].message.content;
-        } else {
-            planContainer.innerHTML = `<p>❌ No se pudo generar el plan de viaje. Inténtalo de nuevo.</p>`;
-        }
-
+        
+        // Mostrar el plan generado como HTML estructurado
+        planContainer.innerHTML = data.choices[0].message.content;
+        
     } catch (error) {
         planContainer.innerHTML = `<p>❌ Hubo un error al generar tu plan de viaje. Inténtalo de nuevo.</p>`;
         console.error("Error en la API:", error);
