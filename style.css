@@ -1,3 +1,4 @@
+/* 🔹 General */
 body {
     font-family: Arial, sans-serif;
     text-align: center;
@@ -6,16 +7,35 @@ body {
     padding: 0;
 }
 
+/* 🔹 Encabezado */
 header {
     background: #007BFF;
     color: white;
     padding: 20px;
 }
 
+/* 🔹 Secciones */
 section {
     padding: 20px;
 }
 
+/* 🔹 Formularios */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 90%;
+    max-width: 400px;
+    margin: auto;
+}
+
+/* 🔹 Inputs y Selects */
+input, select {
+    padding: 8px;
+    font-size: 16px;
+}
+
+/* 🔹 Botón */
 button {
     background-color: #007BFF;
     color: white;
@@ -23,31 +43,22 @@ button {
     padding: 10px;
     cursor: pointer;
     font-size: 16px;
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background 0.3s ease; /* Transición suave */
 }
 
 button:hover {
     background-color: #0056b3;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    max-width: 400px;
-    margin: auto;
-}
-
-input, select {
-    padding: 8px;
-    font-size: 16px;
-}
-
+/* 🔹 Ocultar elementos temporalmente */
 .hidden {
     display: none;
 }
 
+/* 🔹 Loading (Cargando...) */
 #loading {
-    position: absolute;
+    position: fixed; /* Fijar la animación en la pantalla */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -55,4 +66,35 @@ input, select {
     padding: 20px;
     border-radius: 10px;
     text-align: center;
+    z-index: 1000; /* Asegura que esté encima de todo */
+}
+
+/* 🔹 Contenedor del plan generado */
+#plan-container {
+    padding: 20px;
+    font-size: 18px;
+    text-align: left;
+    max-width: 600px;
+    margin: auto;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    line-height: 1.6; /* Mejora la legibilidad */
+}
+
+/* 🔹 Estilos Responsivos */
+@media (max-width: 600px) {
+    button {
+        font-size: 18px;
+        padding: 12px;
+    }
+
+    input, select {
+        font-size: 18px;
+        padding: 10px;
+    }
+
+    #plan-container {
+        max-width: 90%;
+    }
 }
