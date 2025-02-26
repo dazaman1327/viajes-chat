@@ -62,3 +62,14 @@ document.getElementById("budget").addEventListener("input", function () {
     document.getElementById("budget-value").textContent = this.value;
 });
 
+
+document.addEventListener("DOMContentLoaded", function () {
+    const budgetSlider = document.getElementById("budget");
+    const budgetValue = document.getElementById("budget-value");
+
+    // Actualizar el valor mostrado cuando se mueve el slider
+    budgetSlider.addEventListener("input", function () {
+        budgetValue.textContent = this.value;
+    });
+});
+
