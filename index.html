@@ -58,6 +58,11 @@
             </div>
 
             <div class="filter">
+                <label>📅 ¿Cuántos días de viaje?</label>
+                <input type="number" id="days" min="1" max="30" value="7">
+            </div>
+
+            <div class="filter">
                 <label>🎭 Tipo de Viaje</label>
                 <select id="trip-type">
                     <option value="Primer Euro Viaje">Primer Euro Viaje</option>
@@ -72,6 +77,16 @@
                     <input type="checkbox" name="invest" value="Comida"> Comida
                     <input type="checkbox" name="invest" value="Actividades"> Actividades
                 </div>
+            </div>
+
+            <div class="filter">
+                <label>📝 Cuéntanos un poco sobre ti (opcional)</label>
+                <textarea id="about-you" placeholder="Ejemplo: Viajo solo y me gusta la aventura"></textarea>
+            </div>
+
+            <div class="filter">
+                <label>🎯 ¿Algo específico que te gustaría hacer? (opcional)</label>
+                <textarea id="special-requests" placeholder="Ejemplo: Quiero visitar viñedos en Francia"></textarea>
             </div>
 
             <button type="submit">🔎 Preguntar a PaoAI</button>
