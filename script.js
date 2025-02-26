@@ -58,4 +58,7 @@ document.getElementById("travel-form").addEventListener("submit", function(event
     window.location.href = "chat.html?" + params.toString();
 });
 
+document.getElementById("budget").addEventListener("input", function () {
+    document.getElementById("budget-value").textContent = this.value;
+});
 
