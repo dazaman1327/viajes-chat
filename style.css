@@ -133,3 +133,48 @@ button:hover {
         width: 90%;
     }
 }
+
+.plan-container {
+    background-color: #fce4ec;
+    color: #4a4a4a;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 800px;
+    margin: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.plan-container h1 {
+    font-size: 24px;
+    color: #722f37;
+    text-align: center;
+}
+
+.plan-container h2 {
+    font-size: 20px;
+    color: #b56576;
+    border-bottom: 2px solid #b56576;
+    padding-bottom: 5px;
+    margin-top: 20px;
+}
+
+.plan-container p, .plan-container ul {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.cta {
+    display: block;
+    text-align: center;
+    background-color: #b56576;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.cta:hover {
+    background-color: #933b4d;
+}
