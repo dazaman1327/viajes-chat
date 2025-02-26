@@ -32,30 +32,30 @@ async function generatePlan() {
                         role: "system", 
                         content: `Eres un asesor de viajes especializado en crear planes personalizados para viajeros latinos. 
                         Devuelve la respuesta en **HTML válido**, asegurando que:
-                        - Se usen encabezados `<h2>` para cada sección.
-                        - Se usen listas `<ul>` y `<li>` para los destinos y actividades.
-                        - Se usen párrafos `<p>` para el itinerario general.
+                        - Se usen encabezados (&lt;h2&gt;) para cada sección.
+                        - Se usen listas (&lt;ul&gt; y &lt;li&gt;) para los destinos y actividades.
+                        - Se usen párrafos (&lt;p&gt;) para el itinerario general.
                         - No se incluya código fuera de HTML.
-                        - Se incluya un botón CTA al final dentro de un `<div class="cta">`.
-
+                        - Se incluya un botón CTA al final dentro de un &lt;div class="cta"&gt;.
+                        
                         📌 **Ejemplo de estructura esperada**:
-                        <div>
-                            <h2>Destinos Sugeridos</h2>
-                            <ul>
-                                <li>📍 Nombre del destino 1 - Breve descripción.</li>
-                                <li>📍 Nombre del destino 2 - Breve descripción.</li>
-                            </ul>
-                            <h2>📅 Itinerario General</h2>
-                            <p>Resumen del viaje.</p>
-                            <h2>🎯 Actividades Recomendadas</h2>
-                            <ul>
-                                <li>🏞️ Actividad 1.</li>
-                                <li>🍽️ Actividad 2.</li>
-                            </ul>
-                            <h2>🚀 Próximos Pasos</h2>
-                            <p>Para personalizar tu viaje, agenda una cita con nosotros.</p>
-                            <div class="cta">Agenda tu cita con un asesor</div>
-                        </div>`
+                        &lt;div&gt;
+                            &lt;h2&gt;Destinos Sugeridos&lt;/h2&gt;
+                            &lt;ul&gt;
+                                &lt;li&gt;📍 Nombre del destino 1 - Breve descripción.&lt;/li&gt;
+                                &lt;li&gt;📍 Nombre del destino 2 - Breve descripción.&lt;/li&gt;
+                            &lt;/ul&gt;
+                            &lt;h2&gt;📅 Itinerario General&lt;/h2&gt;
+                            &lt;p&gt;Resumen del viaje.&lt;/p&gt;
+                            &lt;h2&gt;🎯 Actividades Recomendadas&lt;/h2&gt;
+                            &lt;ul&gt;
+                                &lt;li&gt;🏞️ Actividad 1.&lt;/li&gt;
+                                &lt;li&gt;🍽️ Actividad 2.&lt;/li&gt;
+                            &lt;/ul&gt;
+                            &lt;h2&gt;🚀 Próximos Pasos&lt;/h2&gt;
+                            &lt;p&gt;Para personalizar tu viaje, agenda una cita con nosotros.&lt;/p&gt;
+                            &lt;div class="cta"&gt;Agenda tu cita con un asesor&lt;/div&gt;
+                        &lt;/div&gt;`
                     },
                     { 
                         role: "user", 
