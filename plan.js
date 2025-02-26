@@ -74,41 +74,6 @@ async function generatePlan() {
     }
 }
 
-// 🔹 Función para formatear la respuesta de OpenAI y mejorar la estructura visual
-function formatPlan(plan) {
-    let formattedPlan = plan
-        .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>") // Negritas con **texto**
-        .replace(/\n\n/g, "<br><br>") // Saltos de línea
 
-        // Eliminar viñetas innecesarias que vienen del modelo
-        .replace(/•/g, ""); 
-
-    return `
-        <div class="plan-container">
-            <h1>Tu Plan de Viaje Personalizado</h1>
-
-            <h2>📍 Destinos Sugeridos</h2>
-            <div class="section-divider"></div>
-            <ul class="styled-list">${formattedPlan}</ul>
-
-            <h2>📅 Itinerario General</h2>
-            <div class="section-divider"></div>
-            <p>Este es un plan de viaje sugerido basado en tus preferencias. Contáctanos para personalizarlo aún más.</p>
-
-            <h2>🎯 Actividades Recomendadas</h2>
-            <div class="section-divider"></div>
-            <ul class="styled-list">
-                <li>Explora sitios históricos y culturales.</li>
-                <li>Disfruta de la gastronomía local.</li>
-                <li>Realiza actividades al aire libre.</li>
-            </ul>
-
-            <h2>🚀 Próximos Pasos</h2>
-            <div class="section-divider"></div>
-
-            <a href="#" class="cta">Agenda tu cita con un asesor aquí</a>
-        </div>
-    `;
-}
 
 
