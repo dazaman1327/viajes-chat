@@ -58,15 +58,37 @@ async function generatePlan() {
 
         const data = await response.json();
         
-        // Mostrar el plan generado como HTML estructurado
-        planContainer.innerHTML = data.choices[0].message.content;
+        // Formatear la respuesta antes de mostrarla
+        const formattedPlan = formatPlan(data.choices[0].message.content);
+        
+        // Mostrar el plan generado con formato estructurado
+        planContainer.innerHTML = formattedPlan;
         
     } catch (error) {
         planContainer.innerHTML = `<p>❌ Hubo un error al generar tu plan de viaje. Inténtalo de nuevo.</p>`;
         console.error("Error en la API:", error);
     } finally {
-        // Ocultar la imagen de carga y mostrar el plan
-        loading.style.display = "none"; // Oculta el GIF de carga
-        planContainer.classList.remove("hidden");
+        // Ocultar el loader y mostrar la respuesta
+        if (loading) loading.style.display = "none";
+        if (planContainer) planContainer.classList.remove("hidden");
     }
+}
+
+// 🔹 Función para formatear la respuesta de OpenAI y mejorar la estructura visual
+function formatPlan(plan) {
+    let formattedPlan = plan
+        .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>") // Convertir **texto** en <strong>
+        .replace(/\n\n/g, "<br><br>"); // Saltos de línea
+    
+    return `
+        <h2>🗺️ Destinos Sugeridos</h2>
+        <p>${formattedPlan}</p>
+        <h2>📅 Itinerario General</h2>
+        <p>Este es un plan de viaje sugerido basado en tus preferencias. Contáctanos para personalizarlo aún más.</p>
+        <h2>🎯 Actividades Recomendadas</h2>
+        <p>Explora estas actividades populares en tu destino.</p>
+        <h2>📌 Próximos Pasos</h2>
+        <p>Si te ha gustado la propuesta y deseas personalizar tu viaje, puedes agendar una cita con uno de nuestros asesores.</p>
+        <button class="cta">Agenda tu cita con un asesor</button>
+    `;
 }
