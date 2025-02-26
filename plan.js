@@ -78,7 +78,10 @@ async function generatePlan() {
 function formatPlan(plan) {
     let formattedPlan = plan
         .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>") // Negritas con **texto**
-        .replace(/\n\n/g, "<br><br>"); // Saltos de línea para mejorar la legibilidad
+        .replace(/\n\n/g, "<br><br>") // Saltos de línea
+
+        // Eliminar viñetas innecesarias que vienen del modelo
+        .replace(/•/g, ""); 
 
     return `
         <div class="plan-container">
@@ -86,9 +89,7 @@ function formatPlan(plan) {
 
             <h2>📍 Destinos Sugeridos</h2>
             <div class="section-divider"></div>
-            <ul class="styled-list">
-                ${formattedPlan}
-            </ul>
+            <ul class="styled-list">${formattedPlan}</ul>
 
             <h2>📅 Itinerario General</h2>
             <div class="section-divider"></div>
@@ -110,4 +111,5 @@ function formatPlan(plan) {
         </div>
     `;
 }
+
 
