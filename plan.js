@@ -23,15 +23,16 @@ async function generatePlan() {
                         role: "system", 
                         content: `Eres un asesor de viajes especializado en crear planes personalizados para viajeros latinos. 
                         Tu objetivo es inspirar al usuario con una propuesta de viaje emocionante y atractiva. 
-                        El plan debe ser de **alto nivel**, sin demasiados detalles, pero mostrando un abanico de opciones interesantes. 
-                        También debe incluir una **llamada a la acción**, motivando al usuario a **agendar una cita personal con nuestra agencia** 
-                        para afinar detalles y reservar su viaje.`
+                        Devuelve la respuesta estructurada en HTML con los siguientes elementos:
+                        - **Encabezados (`<h2>`)** para cada sección (Destinos, Itinerario, Actividades, etc.).
+                        - **Listas (`<ul>`)** para enumerar destinos y actividades.
+                        - **Párrafos (`<p>`)** con descripciones inspiradoras.
+                        - **Una llamada a la acción al final** que motive al usuario a agendar una cita con la agencia.` 
                     },
                     { 
                         role: "user", 
                         content: `Hola, quiero un plan de viaje con estos detalles: ${travelInfo}. 
-                        Por favor, dame una propuesta inspiradora que muestre posibles destinos, actividades clave y una visión general del viaje. 
-                        Termina con una llamada a la acción invitándome a agendar una cita con la agencia para personalizar mi experiencia.` 
+                        Estructura la respuesta en HTML usando títulos, listas y una llamada a la acción al final.` 
                     }
                 ]
             })
@@ -39,9 +40,8 @@ async function generatePlan() {
 
         const data = await response.json();
         
-        // Mostrar el plan generado
-        planContainer.innerHTML = `<p><strong>📍 Tu Plan de Viaje:</strong></p>
-                                   <p>${data.choices[0].message.content}</p>`;
+        // Mostrar el plan generado como HTML estructurado
+        planContainer.innerHTML = data.choices[0].message.content;
         
     } catch (error) {
         planContainer.innerHTML = `<p>❌ Hubo un error al generar tu plan de viaje. Inténtalo de nuevo.</p>`;
