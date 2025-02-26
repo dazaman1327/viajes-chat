@@ -3,64 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beyond The Map - Agencia de Viajes</title>
+    <title>Beyond The Map - Viajes Personalizados</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>Beyond The Map</h1>
-        <p>Viajes personalizados a Europa para viajeros latinos</p>
-    </header>
 
-    <section id="about">
-        <h2>Nuestra Misión</h2>
-        <p>En Beyond The Map, diseñamos experiencias de viaje únicas para explorar el mundo de manera auténtica.</p>
-        
-        <h2>Nuestra Visión</h2>
-        <p>Queremos conectar a los viajeros latinos con destinos inolvidables, adaptados a sus preferencias y presupuesto.</p>
-    </section>
-
-    <section id="blog-carousel">
-        <h2>Últimos artículos</h2>
-        <div class="carousel">
-            <p>📌 Próximamente: Sección de blog aquí</p>
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="hero-content">
+            <h1>Tu Compañero de Viajes Personalizado</h1>
+            <p>Obtén recomendaciones de viaje y planea tu aventura perfecta con nuestra inteligencia artificial.</p>
         </div>
     </section>
 
-    <section id="custom-travel">
-        <h2>Pre-Arma tu viaje con AI</h2>
+    <!-- Sección Inspiracional -->
+    <section id="inspiration">
+        <h2>✨ Inspírate</h2>
+        <div class="grid">
+            <div class="card">
+                <img src="img/santorini.jpg" alt="Santorini, Grecia">
+                <h3>Santorini, Grecia</h3>
+                <p>Casas blancas y puestas de sol impresionantes.</p>
+            </div>
+            <div class="card">
+                <img src="img/swiss-alps.jpg" alt="Alpes Suizos">
+                <h3>Alpes Suizos</h3>
+                <p>Montañas majestuosas y senderos escénicos.</p>
+            </div>
+            <div class="card">
+                <img src="img/bali.jpg" alt="Bali, Indonesia">
+                <h3>Bali, Indonesia</h3>
+                <p>Paraíso tropical con cultura vibrante.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filtros de Viaje -->
+    <section id="filters">
+        <h2>📌 Personaliza tu Viaje</h2>
         <form id="travel-form">
-            <label>🌍 Región a visitar:</label>
-            <select id="region">
-                <option value="Europa">Europa</option>
-                <option value="Américas">Américas</option>
-                <option value="Asia">Asia</option>
-            </select>
+            <div class="filter">
+                <label>📍 Destino</label>
+                <select id="region">
+                    <option value="Europa">Europa</option>
+                    <option value="Américas">Américas</option>
+                    <option value="Asia">Asia</option>
+                </select>
+            </div>
 
-            <label>✈️ Tipo de viaje:</label>
-            <select id="trip-type">
-                <option value="Primer Euro Viaje">Primer Euro Viaje</option>
-                <option value="Destinos poco comunes">Destinos poco comunes</option>
-            </select>
-            <label>📅 ¿Cuántos días de viaje?</label>
-            <input type="number" id="days" min="1" max="30" value="7">
-            
-            <label>💰 Presupuesto: <span id="budget-value">50000</span> MXN</label>
-            <input type="range" id="budget" min="10000" max="100000" step="1000" value="50000">
+            <div class="filter">
+                <label>💰 Presupuesto</label>
+                <input type="range" id="budget" min="10000" max="100000" step="5000" value="50000">
+                <span id="budget-value">50,000 MXN</span>
+            </div>
 
-            <label>🛏️ ¿En qué quieres invertir?</label>
-            <input type="checkbox" name="invest" value="Hoteles"> Hoteles  
-            <input type="checkbox" name="invest" value="Comida"> Comida  
-            <input type="checkbox" name="invest" value="Actividades"> Actividades  
+            <div class="filter">
+                <label>🎭 Tipo de Viaje</label>
+                <select id="trip-type">
+                    <option value="Primer Euro Viaje">Primer Euro Viaje</option>
+                    <option value="Destinos poco comunes">Destinos poco comunes</option>
+                </select>
+            </div>
 
-            <label>📝 Cuéntanos un poco sobre ti (opcional)</label>
-            <textarea id="about-you" placeholder="Ejemplo: Viajo solo y me gusta la aventura"></textarea>
-            
-            <label>🎯 ¿Algo específico que te gustaría hacer? (opcional)</label>
-            <textarea id="special-requests" placeholder="Ejemplo: Quiero visitar viñedos en Francia"></textarea>
+            <div class="filter">
+                <label>🛎️ Invertir en</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" name="invest" value="Hoteles"> Hoteles
+                    <input type="checkbox" name="invest" value="Comida"> Comida
+                    <input type="checkbox" name="invest" value="Actividades"> Actividades
+                </div>
+            </div>
 
-
-            <button type="submit">Preguntar a PaoAI</button>
+            <button type="submit">🔎 Preguntar a PaoAI</button>
         </form>
     </section>
 
