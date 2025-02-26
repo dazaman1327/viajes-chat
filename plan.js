@@ -105,7 +105,6 @@ function formatPlan(plan) {
 
             <h2>🚀 Próximos Pasos</h2>
             <div class="section-divider"></div>
-            <p>Si te ha gustado la propuesta y deseas personalizar tu viaje, puedes agendar una cita con uno de nuestros asesores.</p>
 
             <a href="#" class="cta">Agenda tu cita con un asesor aquí</a>
         </div>
