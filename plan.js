@@ -66,12 +66,14 @@ async function generatePlan() {
         });
 
         const data = await response.json();
+        console.log("Respuesta de OpenAI:", data);
         let planHTML = data.choices[0].message.content;
 
         // Eliminar posibles listas vacías generadas por OpenAI
         planHTML = planHTML.replace(/<ul>\s*<\/ul>/g, '').replace(/<li>\s*<\/li>/g, '');
 
         // Mostrar el plan en la página
+        console.log("Contenido insertado en HTML:", data.choices[0].message.content);
         planContainer.innerHTML = planHTML;
         
     } catch (error) {
