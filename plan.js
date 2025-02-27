@@ -59,7 +59,7 @@ async function generatePlan() {
                     { 
                         role: "user", 
                         content: `Hola, quiero un plan de viaje con estos detalles: ${travelInfo}. 
-                        ${aboutUser} ${specialRequests} sigue el formato html indicado.`
+                        ${aboutUser} ${specialRequests} `
                     }
                 ]
             })
