@@ -135,14 +135,14 @@ button:hover {
 }
 
 /* 🔹 Estilos para el plan de viaje */
-.plan-container {
-    background-color: #fce4ec;
-    color: #4a4a4a;
+#plan-container {
+    text-align: left;
     padding: 20px;
-    border-radius: 10px;
-    max-width: 800px;
+    max-width: 700px;
     margin: auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fcf7f8; /* Fondo suave */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
 .plan-container h1 {
