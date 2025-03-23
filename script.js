@@ -1,78 +1,118 @@
-const chatBox = document.getElementById("chat-box");
-
-async function sendMessage() {
-    const userInput = document.getElementById("user-input");
-    const message = userInput.value.trim();
-    if (message === "") return;
-
-    appendMessage("Tú: " + message);
-    userInput.value = "";
-
-    try {
-        const response = await fetch("https://plain-resonance-24f2.ingdavidzavala.workers.dev/", { 
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                model: "gpt-4",
-                messages: [
-                    { role: "system", content: "Eres un asesor de viajes experto en Europa para viajeros latinos. Proporciona recomendaciones de destinos, itinerarios y consejos de viaje." }, 
-                    { role: "user", content: message }
-                ]
-            })
-        });
-
-        const data = await response.json();
-
-        if (data.choices && data.choices.length > 0) {
-            const reply = data.choices[0].message.content;
-            appendMessage("Asesor: " + reply);
-        } else {
-            appendMessage("Asesor: Lo siento, no pude procesar tu solicitud.");
-        }
-    } catch (error) {
-        console.error("Error en la solicitud:", error);
-        appendMessage("Asesor: Ocurrió un error al procesar tu solicitud. Intenta de nuevo.");
-    }
-}
-
-function appendMessage(text) {
-    const messageElement = document.createElement("p");
-    messageElement.textContent = text;
-    chatBox.appendChild(messageElement);
-    chatBox.scrollTop = chatBox.scrollHeight;
-}
-
-
-document.getElementById("travel-form").addEventListener("submit", function(event) {
-    event.preventDefault();
-
-    const region = document.getElementById("region").value;
-    const tripType = document.getElementById("trip-type").value;
-    const budget = document.getElementById("budget").value;
-    const days = document.getElementById("days").value;
-    const invest = Array.from(document.querySelectorAll('input[name="invest"]:checked'))
-                        .map(el => el.value)
-                        .join(", ");
-    const aboutYou = document.getElementById("about-you").value.trim();
-    const specialRequests = document.getElementById("special-requests").value.trim();
-
-    const params = new URLSearchParams({ region, tripType, budget, days, invest, aboutYou, specialRequests });
-    window.location.href = "chat.html?" + params.toString();
-});
-
-
-document.getElementById("budget").addEventListener("input", function () {
-    document.getElementById("budget-value").textContent = this.value;
-});
-
-
 document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("travel-form");
     const budgetSlider = document.getElementById("budget");
     const budgetValue = document.getElementById("budget-value");
 
-    // Actualizar el valor mostrado cuando se mueve el slider
+    const fixedDates = document.getElementById("fixed-dates");
+    const openDates = document.getElementById("open-dates");
+
+    // Mostrar valor dinámico del presupuesto
     budgetSlider.addEventListener("input", function () {
-        budgetValue.textContent = this.value;
+        budgetValue.textContent = `${this.value.toLocaleString()} MXN`;
+    });
+
+    // Mostrar campos según selección de fechas
+    const dateCheckboxes = document.querySelectorAll('input[name="dateType"]');
+    dateCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener("change", function () {
+            if (this.value === "fijas" && this.checked) {
+                fixedDates.classList.remove("hidden");
+            } else if (this.value === "fijas") {
+                fixedDates.classList.add("hidden");
+            }
+
+            if (this.value === "estimadas" && this.checked) {
+                fixedDates.classList.remove("hidden");
+            }
+
+            if (this.value === "abiertas" && this.checked) {
+                openDates.classList.remove("hidden");
+            } else if (this.value === "abiertas") {
+                openDates.classList.add("hidden");
+            }
+        });
+    });
+
+    // Enviar formulario
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const region = document.getElementById("region").value;
+        const budget = document.getElementById("budget").value;
+
+        // Fechas
+        let dateType = [];
+        document.querySelectorAll('input[name="dateType"]:checked').forEach(el => {
+            dateType.push(el.value);
+        });
+
+        const startDate = document.getElementById("startDate").value;
+        const endDate = document.getElementById("endDate").value;
+        const monthEstimate = document.getElementById("monthEstimate").value;
+        const daysEstimate = document.getElementById("daysEstimate").value;
+
+        // Tipo de viaje
+        let tripType = "";
+        document.querySelectorAll('input[name="tripType"]').forEach(el => {
+            if (el.checked) {
+                tripType = el.value;
+            }
+        });
+        if (tripType === "Otro") {
+            tripType = document.getElementById("tripTypeOther").value || "Otro";
+        }
+
+        // Preferencias de inversión
+        let invest = [];
+        document.querySelectorAll('input[name="invest"]:checked').forEach(el => {
+            invest.push(el.value);
+        });
+
+        // Destino específico
+        const specificDestination = document.getElementById("specificDestination").value;
+
+        // Ritmo de viaje
+        let pace = "";
+        document.querySelectorAll('input[name="pace"]').forEach(el => {
+            if (el.checked) {
+                pace = el.value;
+            }
+        });
+
+        // Compañía
+        let company = "";
+        document.querySelectorAll('input[name="company"]').forEach(el => {
+            if (el.checked) {
+                company = el.value;
+            }
+        });
+        if (company === "Otro") {
+            company = document.getElementById("companyOther").value || "Otro";
+        }
+
+        // Campos opcionales
+        const aboutYou = document.getElementById("aboutYou").value;
+        const specialRequests = document.getElementById("specialRequests").value;
+
+        // Construir parámetros
+        const params = new URLSearchParams({
+            region,
+            budget,
+            dateType: dateType.join(", "),
+            startDate,
+            endDate,
+            monthEstimate,
+            daysEstimate,
+            tripType,
+            invest: invest.join(", "),
+            specificDestination,
+            pace,
+            company,
+            aboutYou,
+            specialRequests
+        });
+
+        // Redirigir al chat
+        window.location.href = "chat.html?" + params.toString();
     });
 });
-
