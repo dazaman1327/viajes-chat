@@ -12,23 +12,15 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Mostrar campos según selección de fechas
-    const dateCheckboxes = document.querySelectorAll('input[name="dateType"]');
-    dateCheckboxes.forEach(checkbox => {
-        checkbox.addEventListener("change", function () {
-            if (this.value === "fijas" && this.checked) {
+    const dateRadios = document.querySelectorAll('input[name="dateType"]');
+    dateRadios.forEach(radio => {
+        radio.addEventListener("change", function () {
+            if (this.value === "fijas" || this.value === "estimadas") {
                 fixedDates.classList.remove("hidden");
-            } else if (this.value === "fijas") {
-                fixedDates.classList.add("hidden");
-            }
-
-            if (this.value === "estimadas" && this.checked) {
-                fixedDates.classList.remove("hidden");
-            }
-
-            if (this.value === "abiertas" && this.checked) {
-                openDates.classList.remove("hidden");
-            } else if (this.value === "abiertas") {
                 openDates.classList.add("hidden");
+            } else if (this.value === "abiertas") {
+                fixedDates.classList.add("hidden");
+                openDates.classList.remove("hidden");
             }
         });
     });
@@ -41,9 +33,11 @@ document.addEventListener("DOMContentLoaded", function () {
         const budget = document.getElementById("budget").value;
 
         // Fechas
-        let dateType = [];
-        document.querySelectorAll('input[name="dateType"]:checked').forEach(el => {
-            dateType.push(el.value);
+        let dateType = "";
+        document.querySelectorAll('input[name="dateType"]').forEach(el => {
+            if (el.checked) {
+                dateType = el.value;
+            }
         });
 
         const startDate = document.getElementById("startDate").value;
@@ -98,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const params = new URLSearchParams({
             region,
             budget,
-            dateType: dateType.join(", "),
+            dateType,
             startDate,
             endDate,
             monthEstimate,
